@@ -1,0 +1,32 @@
+# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+POKY_BBLAYERS_CONF_VERSION = "2"
+
+BBPATH = "${TOPDIR}"
+BBFILES ?= ""
+
+OEROOT := "##OEROOT##"
+# add BSPDIR variable, as it is needed by recipes of NXP
+BSPDIR := "${OEROOT}/../.."
+
+# In our BSPs active layers are defined by the manifest.xml for all BSPs. The
+# bblayers.conf gets created by the init_bblayers.py script.
+BBLAYERS ?= " \
+  ${OEROOT}/../meta-ksp5044 \
+  "
+BBLAYERS += "\
+  ${OEROOT}/../poky/meta \
+  ${OEROOT}/../poky/meta-poky \
+  ${OEROOT}/../meta-openembedded/meta-oe \
+  ${OEROOT}/../meta-openembedded/meta-networking \
+  ${OEROOT}/../meta-openembedded/meta-python \
+  ${OEROOT}/../meta-openembedded/meta-multimedia \
+  ${OEROOT}/../meta-openembedded/meta-filesystems \
+  ${OEROOT}/../meta-openembedded/meta-perl \
+  ${OEROOT}/../meta-qt5 \
+  ${OEROOT}/../meta-rauc \
+  ${OEROOT}/../meta-security \
+  ${OEROOT}/../meta-security/meta-tpm \
+  ${OEROOT}/../meta-ampliphy \
+  ${OEROOT}/../meta-phytec \
+  "
